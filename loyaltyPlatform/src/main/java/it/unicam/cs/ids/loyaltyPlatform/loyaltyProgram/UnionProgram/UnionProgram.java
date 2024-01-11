@@ -34,6 +34,11 @@ public class UnionProgram extends LoyaltyProgram {
     )
     private List<Owner> members;
 
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "owner")
+    private Owner owner;
 
+    @Column(name = "canBePublished")
+    private Boolean canBePublished;
 
 }
