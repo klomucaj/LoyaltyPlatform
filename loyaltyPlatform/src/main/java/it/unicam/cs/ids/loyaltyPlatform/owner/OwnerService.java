@@ -23,9 +23,6 @@ public class OwnerService {
         return this.ownerRepository.findAll();
     }
 
-    // TODO
-    // prima d'iscriversi l'owner deve aver pagato
-    // IDEA: controlla la lista pagamenti
     public ResponseEntity<Owner> createOwner(Owner owner){
         try{
             Objects.requireNonNull(owner.getVatNumber());
@@ -49,7 +46,7 @@ public class OwnerService {
         }
     }
 
-    // TODO se voglio modificare gli shops mettendone meno di 2?
+    
     public ResponseEntity<Owner> modifyOwner(String vatNumber, Owner owner){
         Owner ownerToUpdate;
         try{
