@@ -23,6 +23,7 @@ public class OwnerService {
         return this.ownerRepository.findAll();
     }
 
+
     public ResponseEntity<Owner> createOwner(Owner owner){
         try{
             Objects.requireNonNull(owner.getVatNumber());
@@ -46,7 +47,7 @@ public class OwnerService {
         }
     }
 
-    
+
     public ResponseEntity<Owner> modifyOwner(String vatNumber, Owner owner){
         Owner ownerToUpdate;
         try{
