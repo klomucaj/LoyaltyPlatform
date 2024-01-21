@@ -35,5 +35,4 @@ public class OwnerController {
         return this.ownerService.deleteOwner(vatNumber);
     }
 
-    // MANCANO DUE METODI IMPLEMENTATI DA DUMITRU E CIO CHE SERVE PER IMPLEMENTARLI
 }
