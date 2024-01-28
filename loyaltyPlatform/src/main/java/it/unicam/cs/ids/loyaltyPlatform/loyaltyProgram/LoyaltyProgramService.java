@@ -21,9 +21,21 @@ public class LoyaltyProgramService {
         return this.loyaltyProgramRepository.findById(loyaltyProgramID);
     }
 
-    public List<LoyaltyProgram> getAllLoyaltyPrograms() {
+    public List<LoyaltyProgram> getAllLoyaltyPrograms(){
         Iterable<LoyaltyProgram> itr = loyaltyProgramRepository.findAll();
         return StreamSupport.stream(itr.spliterator(), false).collect(Collectors.toList());
     }
 
+    public List<BonusCreationDTO> getBonusCreationDTOsFromProgram(Long id){
+        return loyaltyProgramRepository.findLoyaltyProgramBonusCreationDTOValuesByID(id);
+    }
+
+    public boolean verifyIfExists(Long programId){
+        return loyaltyProgramRepository.programExists(programId);
+    }
+
+    public boolean publishLoyaltyProgram(Long id){
+        loyaltyProgramRepository.findById(id).ifPresent(loyaltyProgram -> loyaltyProgram.setPublishedStatus(true));
+        return false;
+    }
 }
