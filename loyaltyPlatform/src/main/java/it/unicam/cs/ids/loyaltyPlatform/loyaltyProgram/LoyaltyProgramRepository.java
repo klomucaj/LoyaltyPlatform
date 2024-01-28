@@ -90,11 +90,4 @@ public interface LoyaltyProgramRepository extends CrudRepository<LoyaltyProgram,
             nativeQuery = true)
     List<Object[]> findLoyaltyProgramBonusCreationValuesByIDNative(Long id);
 
-    /**
-     * Searches for a loyalty program in the datasource that has the same ID as the one given
-     * and extracts its necessary values to create a {@link BonusCreationDTO} which in turn allows to create {@link Bonus}.
-     * @param id ID belonging to an existing {@link LoyaltyProgram#getId()}.
-     * @return A collection of BonusCreationDTOs.
-     */
-
 }
