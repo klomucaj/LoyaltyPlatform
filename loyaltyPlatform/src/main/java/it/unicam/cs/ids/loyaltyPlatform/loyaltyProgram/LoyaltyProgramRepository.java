@@ -90,4 +90,26 @@ public interface LoyaltyProgramRepository extends CrudRepository<LoyaltyProgram,
             nativeQuery = true)
     List<Object[]> findLoyaltyProgramBonusCreationValuesByIDNative(Long id);
 
+    /**
+     * Searches for a loyalty program in the datasource that has the same ID as the one given
+     * and extracts its necessary values to create a {@link BonusCreationDTO} which in turn allows to create {@link Bonus}.
+     * @param id ID belonging to an existing {@link LoyaltyProgram#getId()}.
+     * @return A collection of BonusCreationDTOs.
+     */
+    default List<BonusCreationDTO> findLoyaltyProgramBonusCreationDTOValuesByID(Long id) {
+        List<Object[]> results = findLoyaltyProgramBonusCreationValuesByIDNative(id);
+        List<BonusCreationDTO> bonusCreationDTOs = new ArrayList<>();
+
+        for (Object[] result : results) {
+            BonusCreationDTO bonusCreationDTO = new BonusCreationDTO();
+            bonusCreationDTO.setDate((LocalDate) result[0]);
+            bonusCreationDTO.setCategory((String) result[1]);
+            bonusCreationDTO.setBenefit((int) result[2]);
+            bonusCreationDTO.setDiscountPercentage((int) result[3]);
+            bonusCreationDTO.setRatio(ProgramRatioParameter.valueOf((String) result[4]));
+            bonusCreationDTOs.add(bonusCreationDTO);
+        }
+
+        return bonusCreationDTOs;
+    }
 }
