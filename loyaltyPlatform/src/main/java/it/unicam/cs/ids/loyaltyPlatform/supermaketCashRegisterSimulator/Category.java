@@ -10,19 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Category {
-<<<<<<< HEAD
-<<<<<<< HEAD
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
     private String category;
-=======
 
-
->>>>>>> df3a7d2 (First touch down of the Category class for the supermarket class)
-=======
-
-
->>>>>>> origin/Collaborator
 }
