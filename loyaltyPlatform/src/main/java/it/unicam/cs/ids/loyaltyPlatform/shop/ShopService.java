@@ -29,6 +29,28 @@ public class ShopService {
         }
     }
 
+    public ResponseEntity<Shop> modifyShop(Long id, Shop shop){
+        Shop shopToUpdate;
+        try {
+            shopToUpdate = this.shopRepository.findById(id).orElseThrow();
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(new Shop(), HttpStatus.NOT_FOUND);
+        }
+        shopToUpdate.setOwnerVatNumber(shop.getOwnerVatNumber());
+        shopToUpdate.setAddress(shop.getAddress());
+        shopToUpdate.setPhoneNumber(shop.getPhoneNumber());
+        return new ResponseEntity<>(this.shopRepository.save(shopToUpdate), HttpStatus.OK);
+    }
 
+    public ResponseEntity<Shop> deleteShop(Long id){
+        Shop shop;
+        try {
+           shop = this.shopRepository.findById(id).orElseThrow();
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(new Shop(), HttpStatus.NOT_FOUND);
+        }
+        this.shopRepository.deleteById(id);
+        return new ResponseEntity<>(shop, HttpStatus.OK);
+    }
 
 }
