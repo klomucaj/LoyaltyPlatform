@@ -34,5 +34,30 @@ public class PlanService {
         this.planRepository.deleteById(campaign);
     }
 
+    public void putIntoPlan(Long campaign, Message message){
+        if(this.planRepository.findById(campaign).isEmpty()){
+            ArrayList<Message> plannedMessages = new ArrayList<>();
+            plannedMessages.add(message);
+            this.planRepository.save(new Plan(campaign, plannedMessages));
+            System.out.println();
+            System.out.println("==================================================");
+            System.out.println("=> message " + message.getId() + " put into a NEW plan");
+            System.out.println("==================================================");
+        } else {
+            Plan plan = this.planRepository.findById(campaign).orElseThrow();
+            plan.getPlannedMessages().add(message);
+            System.out.println();
+            System.out.println("==================================================");
+            System.out.println("=> message " + message.getId() + " put into a plan");
+            System.out.println("==================================================");
+        }
+    }
 
+    public void deliverNow(Long messageId){
+        // il messaggio viene inviato
+        System.out.println();
+        System.out.println("==================================================");
+        System.out.println("=> Message " + messageId + " delivered!");
+        System.out.println("==================================================");
+    }
 }
