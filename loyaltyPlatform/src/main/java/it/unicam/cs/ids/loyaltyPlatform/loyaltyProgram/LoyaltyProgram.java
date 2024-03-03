@@ -27,7 +27,7 @@ public abstract class LoyaltyProgram {
     protected boolean publishedStatus;
 
     @Temporal(TemporalType.DATE)
-    @Column(nullable = true, columnDefinition = "DateTime")
+    //@Column(nullable = true, columnDefinition = "DateTime")
     protected Date programExpirationDate; //YYYY-MM-DD
 
 
